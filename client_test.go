@@ -16,21 +16,21 @@ func TestBuildHeaders(t *testing.T) {
 		{
 			"User-Agent:go-wrk 0.1 bechmark\nContent-Type:text/html;",
 			map[string][]string{
-				"User-Agent":   []string{"go-wrk 0.1 bechmark"},
-				"Content-Type": []string{"text/html;"},
+				"User-Agent":   {"go-wrk 0.1 bechmark"},
+				"Content-Type": {"text/html;"},
 			},
 		},
 		{
 			"Key:Value",
 			map[string][]string{
-				"Key": []string{"Value"},
+				"Key": {"Value"},
 			},
 		},
 		{
 			"Key1:Value1\nKey2:Value2",
 			map[string][]string{
-				"Key1": []string{"Value1"},
-				"Key2": []string{"Value2"},
+				"Key1": {"Value1"},
+				"Key2": {"Value2"},
 			},
 		},
 		{
@@ -38,7 +38,7 @@ func TestBuildHeaders(t *testing.T) {
 			// are replaced.
 			"Key1:Value1A\nKey1:Value1B",
 			map[string][]string{
-				"Key1": []string{"Value1B"},
+				"Key1": {"Value1B"},
 			},
 		},
 		{

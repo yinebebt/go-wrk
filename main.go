@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"runtime"
 )
@@ -45,7 +44,7 @@ func init() {
 }
 
 func readConfig() {
-	configData, err := ioutil.ReadFile(*configFile)
+	configData, err := os.ReadFile(*configFile)
 	if err != nil {
 		fmt.Println(err)
 		panic(err)
@@ -68,7 +67,7 @@ func setRequestBody() {
 	}
 
 	// requestBodyFile has been setup
-	data, err := ioutil.ReadFile(*requestBodyFile)
+	data, err := os.ReadFile(*requestBodyFile)
 	if err != nil {
 		fmt.Println(err)
 		panic(err)

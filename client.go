@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"sync"
 )
@@ -32,7 +33,7 @@ func StartClient(url_, heads, requestBody string, meth string, dka bool, respons
 			}
 
 			// Load CA cert
-			caCert, err := ioutil.ReadFile(*caFile)
+			caCert, err := os.ReadFile(*caFile)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -44,7 +45,6 @@ func StartClient(url_, heads, requestBody string, meth string, dka bool, respons
 				Certificates: []tls.Certificate{cert},
 				RootCAs:      caCertPool,
 			}
-			tlsConfig.BuildNameToCertificate()
 		}
 
 		tr = &http.Transport{TLSClientConfig: tlsConfig, DisableKeepAlives: dka}
